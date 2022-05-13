@@ -8,6 +8,8 @@
 	<p>cd project-name</p>
 	<h4>Set up the database</h4>
 	<p>Create a database in your MySQL which name will be "random_quotes" and import the given exported database.</p>
+    <h4>Serve the project</h4>
+	<p>php artisan serve</p>
     <p></p>
 </p>
 
