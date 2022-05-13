@@ -10,6 +10,12 @@
 	<p>Create a database in your MySQL which name will be "random_quotes" and import the given exported database.</p>
     <h4>Serve the project</h4>
 	<p>php artisan serve</p>
+    <h4>Login</h4>
+	<p>email:admin@gmail.com</p>
+	<p>password:12345678</p>
+	<h4>API Code</h4>
+	<p>API codes have been written in the 'app/Http/Controllers/ApiController.php' & route for API in 'routes/api.php'</p>
+	<p>Middleware for API: app/Http/Middleware/CorsMiddleware.php</p>
     <p></p>
 </p>
 
