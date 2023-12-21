@@ -26,7 +26,7 @@
 								@error('quotes')
 								<span style="color: red">{{ $message }}</span>
 								@enderror
-                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-block">Update</button>
                     </form>
                 </div>
             </div>

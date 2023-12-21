@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Random Quotes</title>
+    <title>Your Daily Quotes</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -19,16 +19,21 @@
             -webkit-text-size-adjust: 100%
         }
 
+        .navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.55);
+    margin-left: 15px;
+}
+
         body {
             margin: 0
+            background-image: url('img/b.gif');
+             background-size: cover;
         }
 
-        a {
-            background-color: transparent
-        }
-
-        [hidden] {
-            display: none
+        body.antialiased{
+            background-image: url('img/b.gif');
+            background-size: cover;
+            background-color: #badcf9c4
         }
 
         html {
@@ -36,40 +41,10 @@
             line-height: 1.5
         }
 
-        *,
-        :after,
-        :before {
-            box-sizing: border-box;
-            border: 0 solid #e2e8f0
-        }
+    
+        
 
-        a {
-            color: inherit;
-            text-decoration: inherit
-        }
-
-        svg,
-        video {
-            display: block;
-            vertical-align: middle
-        }
-
-        video {
-            max-width: 100%;
-            height: auto
-        }
-
-        .bg-white {
-            --bg-opacity: 1;
-            background-color: #fff;
-            background-color: rgba(255, 255, 255, var(--bg-opacity))
-        }
-
-        .bg-gray-100 {
-            --bg-opacity: 1;
-            background-color: #f7fafc;
-            background-color: rgba(247, 250, 252, var(--bg-opacity))
-        }
+        
 
         .border-gray-200 {
             --border-opacity: 1;
@@ -413,131 +388,23 @@
         @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
-                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 btn btn-outline-primary">Home</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 btn btn-outline-primary">Log in</a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
-                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                            class="ml-4 text-sm text-gray-700 dark:text-gray-500 btn btn-outline-primary">Register</a>
                     @endif
                 @endauth
             </div>
         @endif
 
         <div class="container">
-            <h1 class="text-center text-success">Famous Person's Quotes List</h1>
-            <div class="col-md-8">
-                <div class="row justify-content-center">
-                    <div class="container">
-                        <div class="input-group mb-3">
-                            <input type="search" onkeyup="search()" class="form-control rounded" id="search"
-                                placeholder="Search by Name" />
-                            <button type="button" class="btn btn-outline-primary" id="search">search</button>
+            <h1 class="text-center text-success" >YOUR DAILY QUOTES</h1>
                         </div>
 
 
-                        <div id="genarel">
-                            @foreach ($data as $i => $d)
-                                <div class="card mb-2" style="width: 50rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">No.{{ ++$i }}</h5>
-                                        <p class="card-text">"{{ $d->quotes }}"</p>
-                                        <footer class="blockquote-footer text-right">{{ $d->name }}</footer>
-                                        <div class="col-md-12 text-center">
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-
-                        <div id="res" style="display: none" ;>
-                            @foreach ($data as $i => $d)
-                                <div class="card mb-2" style="width: 50rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">No.{{ ++$i }}</h5>
-                                        <p class="card-text">"{{ $d->quotes }}"</p>
-                                        <footer class="blockquote-footer text-right">{{ $d->name }}</footer>
-                                        <div class="col-md-12 text-center">
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <div class="container bg-light">
-                            <div class="col-md-12 text-center" id="load_more">
-                                <button type="button" id="load-more" class="btn btn-info mt-5">Load More</button>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</body>
-
-
-<script>
-    // Code for load data & refresh
-    $("#load-more").on('click', function() {
-        let html = '';
-        $("#genarel").html(' ');
-
-        $.ajax({
-            url: "{{ route('load_more') }}",
-            type: "GET",
-            success: function(data) {
-                $.each(data, function(index, value) {
-                    html += `<div class="card mb-2" style="width: 50rem;">
-                                    <div class="card-body">
-                                        <h5 class="card-title">No.${value.id}</h5>
-                                        <p class="card-text">${value.quotes}</p>
-                                        <footer class="blockquote-footer text-right">${value.name}</footer>
-                                        <div class="col-md-12 text-center">
-                                        </div>
-                                    </div>
-                                </div>`
-                })
-                $('#genarel').append(html);
-            }
-        });
-    })
-
-    // Code for search by keyword
-    function search() {
-
-        var search = $("#search").val();
-
-        if (search) {
-            $("#genarel").hide();
-            $("#res").show();
-        } else {
-            $("#genarel").show();
-            $("#res").hide();
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "{{ URL::to('/search') }}",
-            data: {
-                search: search,
-                _token: "{{ csrf_token() }}"
-            },
-            success: function(data) {
-                // console.log(data)
-                $("#res").html(data);
-
-            }
-        });
-
-
-    }
-</script>
+                        
 
 </html>

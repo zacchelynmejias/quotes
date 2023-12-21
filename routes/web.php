@@ -25,8 +25,8 @@ Route::resource('/home', QuotesController::class);
 
 // Route::get('/front', [HomeController::class, 'front']);
 Route::get('/', [FrontController::class, 'front']);
-Route::post('/search', [FrontController::class, 'search']);
-Route::get('/load_more', [FrontController::class, 'loadMore'])->name('load_more');
+// Route::post('/search', [FrontController::class, 'search']);
+// Route::get('/load_more', [FrontController::class, 'loadMore'])->name('load_more');
 
 Auth::routes();
 

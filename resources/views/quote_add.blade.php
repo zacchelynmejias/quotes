@@ -24,7 +24,7 @@
 							<span style="color: red">{{ $message }}</span>
 					     @enderror
 						</div>
-						<button type="submit" class="btn btn-primary btn-block">Sign in</button>
+						<button type="submit" class="btn btn-primary btn-block">Add Quote</button>
 					  </form>
 				</div>
             </div>
